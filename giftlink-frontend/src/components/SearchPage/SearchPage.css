@@ -1,26 +1,174 @@
-/* Task 1: Style the search input field */
-.search-input {
-    /* Insert specific CSS properties here */
+/* 10. Overall page styling for a cohesive and user-friendly design */
+.container {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Task 2: Style the search button */
-.search-button {
-    /* Insert specific CSS properties here */
+.search-page-title {
+    color: #0056b3;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
-/* Task 3: Customize dropdown filters */
-.dropdown-filter {
-    /* Insert specific CSS properties here */
+.filter-section {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6 !important;
+    margin-bottom: 1.5rem !important;
 }
 
-/* Task 4: Style the age range slider */
-.age-range-slider {
-    /* Insert specific CSS properties here */
+.input-group {
+    margin-bottom: 2rem !important;
 }
 
-/* Task 5: Enhance search results cards appearance */
-.search-results-card {
-    /* Insert specific CSS properties here */
+.search-results {
+    margin-top: 1rem !important;
 }
 
-/* Additional placeholders for tasks 6 to 10 */
+.filter-section h5 {
+    color: #0056b3;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* 1. Style the search input field */
+.input-group .form-control {
+    border-radius: 0.25rem 0 0 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+}
+
+.input-group .form-control:focus {
+    box-shadow: none;
+    border-color: #0056b3;
+}
+
+/* 2. Style the search button */
+.input-group .btn-primary {
+    border-radius: 0 0.25rem 0.25rem 0;
+    padding: 0.6rem 1.5rem;
+    background-color: #0056b3;
+    border: none;
+    font-weight: 600;
+}
+
+.input-group .btn-primary:hover {
+    background-color: #003d80;
+}
+
+/* 3. Customize dropdown filters for category and condition */
+#categorySelect,
+#conditionSelect {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.5rem;
+    background-color: #fff;
+    font-size: 0.95rem;
+}
+
+#categorySelect:focus,
+#conditionSelect:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+/* 4. Style the age range slider */
+#ageRange {
+    width: 100%;
+    accent-color: #0056b3;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.filter-section label {
+    font-weight: 600;
+    color: #495057;
+    margin-top: 0.5rem;
+}
+
+/* 5. Enhance search results cards appearance */
+.search-results .card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-results .card-title {
+    font-weight: 700;
+    color: #212529;
+}
+
+.search-results .card-text {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.search-results .card-footer {
+    background-color: #fff;
+    border-top: none;
+    padding-bottom: 1rem;
+}
+
+.search-results .card-footer .btn-primary {
+    background-color: #0056b3;
+    border: none;
+    border-radius: 0.25rem;
+    width: 100%;
+    font-weight: 600;
+}
+
+.search-results .card-footer .btn-primary:hover {
+    background-color: #003d80;
+}
+
+/* 6. Style the "No products found" alert message */
+.alert-info {
+    background-color: #eef6fb;
+    color: #0056b3;
+    border: 1px solid #b8daf0;
+    border-radius: 0.5rem;
+    text-align: center;
+    padding: 1rem;
+    font-weight: 500;
+}
+
+/* 7. Apply a hover effect to the search results cards */
+.search-results .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+/* 8. Ensure images in search results are displayed appropriately */
+.search-results .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* 9. Create a responsive layout for search results on various devices */
+@media (max-width: 768px) {
+    .search-results .card-img-top {
+        height: 160px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .input-group .form-control {
+        border-radius: 0.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .input-group .btn-primary {
+        border-radius: 0.25rem;
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .search-results .card-img-top {
+        height: 180px;
+    }
+}
