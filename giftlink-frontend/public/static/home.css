@@ -1,19 +1,111 @@
 /* Task 1: Style the body */
 body {
-    /* insert code here */
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #f4f4f4;
 }
 
 /* Task 2: Create a pseudo-element for the background and blur */
 body::before {
-    /* insert code here */
+    content: ""; /* Essential to make the pseudo-element render */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Background image styling */
+    background-image: url('your-image-path.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Blur effect */
+    filter: blur(8px);
+    
+    /* Push it behind the main content */
+    z-index: -1;
 }
 
 /* Task 3: Style the content area */
 .content {
-    /* insert code here */
+    position: relative;
+    z-index: 1; /* Elevates it above the blurred background (which is z-index: -1) */
+    
+    /* Layout & Box Model */
+    max-width: 600px; /* Prevents the container from stretching too wide on large screens */
+    width: 90%; /* Ensures responsiveness on mobile devices */
+    padding: 40px;
+    
+    /* Presentation & Readability */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white to let background colors peek through */
+    color: #333333; /* Dark gray for elegant, high-contrast readability */
+    text-align: center;
+    
+    /* Aesthetic refinements */
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* Task 4: Add styles for headings, paragraphs, and buttons */
-h1, h2, .lead, .btn-primary {
-    /* insert code here */
+/* Task 4: Add styles for headings, paragraphs, and buttons */
+
+/* Typographic Hierarchy */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Styled .lead for the quote / introductory text */
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    font-style: italic;
+    color: #555555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    position: relative;
+    padding: 0 15px;
+}
+
+/* Primary Button Styling */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #3498db; /* Elegant accent blue */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Button Hover and Active States */
+.btn-primary:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    box-shadow: 0 4px 12px rgba(41, 128, 185, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
 }
