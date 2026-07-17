@@ -136,4 +136,76 @@ router.post('/login', async (req, res) => {
     }
 });
 
+
+// ===================== UPDATE PROFILE
+
+// Task 1: Use the `body` and `validationResult` from `express-validator` for input validation
+// (Note: This package statement is already declared at the top of your file)
+// const { body, validationResult } = require('express-validator');[cite: 5]
+
+router.put('/update', [
+    // Define sanitization rules for incoming profile data
+    body('firstName').notEmpty().withMessage('First name cannot be empty'),
+    body('lastName').notEmpty().withMessage('Last name cannot be empty')
+], async (req, res) => {
+    
+    // Task 2: Validate the input using `validationResult` and return appropriate message if there is an error.
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        logger.error('Profile update validation failed');[cite: 5]
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        // Task 3: Check if `email` is present in the header and throw an appropriate error message if not present.
+        const userEmail = req.headers.email;
+        if (!userEmail) {
+            logger.error('Authentication email header missing');[cite: 5]
+            return res.status(400).json({ error: 'Email header is required for profile updates' });
+        }
+
+        // Task 4: Connect to MongoDB and access users collection
+        const db = await connectToDatabase();[cite: 5]
+        const collection = db.collection('users');[cite: 5]
+
+        // Task 5: find user credentials in database
+        const existingUser = await collection.findOne({ email: userEmail });[cite: 5]
+        if (!existingUser) {
+            logger.error('No user found matching the provided header email');[cite: 5]
+            return res.status(404).json({ error: 'User profile not found' });
+        }
+
+        // Preserve your template timestamp modification structure
+        existingUser.updatedAt = new Date();[cite: 5]
+
+        // Task 6: update user credentials in database
+        await collection.updateOne(
+            { email: userEmail },
+            {
+                $set: {
+                    firstName: req.body.firstName,[cite: 5]
+                    lastName: req.body.lastName,[cite: 5]
+                    updatedAt: existingUser.updatedAt
+                }
+            }
+        );
+
+        // Task 7: create JWT authentication with user._id as payload using secret key from .env file
+        const payload = {
+            user: {
+                id: existingUser._id[cite: 5]
+            }
+        };
+
+        const authtoken = jwt.sign(payload, JWT_SECRET);[cite: 5]
+
+        logger.info('User profile successfully updated and token re-issued');[cite: 5]
+        res.json({ authtoken });
+
+    } catch (e) {
+        logger.error(e);[cite: 5]
+        return res.status(500).send('Internal server error');[cite: 5]
+    }
+});
+
 module.exports = router;
